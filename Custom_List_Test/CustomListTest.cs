@@ -60,7 +60,7 @@ namespace Custom_List_Test
         {
             // arrange
             CustomList<int> test = new CustomList<int>();
-            int expected = 5;
+            int expected = 8;
             int actual;
             // act
             test.Add(8);
@@ -68,7 +68,7 @@ namespace Custom_List_Test
             test.Add(8);
             test.Add(8);
             test.Add(8);
-            actual = test.Count;
+            actual = test.Capacity;
             // assert
             Assert.AreEqual(expected, actual);
         }

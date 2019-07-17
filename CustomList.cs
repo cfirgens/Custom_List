@@ -15,10 +15,39 @@ namespace CustomList
 
         private T[] items;
 
+        public T this[int index]
+        {
+            get
+            {
+                if (index >= 0 && index < count)
+                {
+                    return items[index];
+                }
+
+                throw new ArgumentOutOfRangeException();
+            }
+
+            set
+            {
+                if (index >= 0 && index < count)
+                {
+                    items[index] = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+
+
         public CustomList()
         {
-            items = new T[4];
+            items = new T[capacity];
             count = 0;
+            capacity = 4;
+            
         }
     }
 }
