@@ -70,6 +70,7 @@ namespace CustomList
             {
                 IncreaseCapacity();
             }
+
             if (count == 0)
             {
                 index = 0;
