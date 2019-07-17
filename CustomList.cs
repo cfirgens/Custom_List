@@ -10,8 +10,21 @@ namespace CustomList
     {
         int count;
         int capacity;
-        public int Count { get; }
-        public int Capacity { get; }
+        
+        public int Count
+        {
+            get
+            {
+                return count;
+            }
+        }
+        public int Capacity
+        {
+            get
+            {
+                return capacity;
+            }
+        }
 
         private T[] items;
 
@@ -42,25 +55,32 @@ namespace CustomList
 
         public CustomList()
         {
-            items = new T[capacity];
-            count = 1;
-            capacity = 4;
             
+            count = 0;
+            capacity = 4;
+            items = new T[capacity];
+
         }
 
 
         public void Add(T value)
         {
             int index;
-            count++;
             if (count == capacity)
             {
                 IncreaseCapacity();
             }
-            
+            if (count == 0)
+            {
+                index = 0;
+            }
+            else
+            {
+                index = Count - 1;
+            }
 
-            index = Count - 1;
             items[index] = value;
+            count++;
         }
 
 
