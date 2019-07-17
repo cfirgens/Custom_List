@@ -63,12 +63,15 @@ namespace Custom_List_Test
             int expected = 8;
             int actual;
             // act
+            test.Add(4);
+            test.Add(4);
+            test.Add(4);
+            test.Add(4);
             test.Add(8);
             test.Add(8);
             test.Add(8);
             test.Add(8);
-            test.Add(8);
-            actual = test.Capacity;
+            actual = test[4];
             // assert
             Assert.AreEqual(expected, actual);
         }

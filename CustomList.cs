@@ -24,7 +24,7 @@ namespace CustomList
                     return items[index];
                 }
 
-                throw new ArgumentOutOfRangeException();
+                throw new IndexOutOfRangeException();
             }
 
             set
@@ -35,18 +35,46 @@ namespace CustomList
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException();
+                    throw new IndexOutOfRangeException();
                 }
             }
         }
 
-
-
         public CustomList()
         {
             items = new T[capacity];
-            count = 0;
+            count = 1;
             capacity = 4;
+            
+        }
+
+
+        public void Add(T value)
+        {
+            int index;
+            count++;
+            if (count == capacity)
+            {
+                IncreaseCapacity();
+            }
+            
+
+            index = Count - 1;
+            items[index] = value;
+        }
+
+
+        public void IncreaseCapacity()
+        {
+            T[] newItems = new T[capacity];
+            capacity += capacity;
+            for(int i = 0; i < count; i++)
+            {
+                newItems[i] = items[i];
+            }
+
+            items = newItems;
+
             
         }
     }
