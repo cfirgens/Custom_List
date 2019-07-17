@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Custom_List
+namespace CustomList
 {
-    class Custom_List<T>
+    public class CustomList<T>
     {
         int count;
         int capacity;
@@ -15,7 +15,7 @@ namespace Custom_List
 
         private T[] items;
 
-        CustomList()
+        public CustomList()
         {
             items = new T[4];
             count = 0;
