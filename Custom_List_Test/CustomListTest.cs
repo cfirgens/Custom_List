@@ -176,13 +176,95 @@ namespace Custom_List_Test
             int actual;
 
             // act
-
             test.Remove(4);
-
             actual = test.Count;
+
             // assert
             Assert.AreEqual(expected, actual);
         }
+
+        //if i convert an empty list to a string, it should return an empty string
+        [TestMethod]
+        public void Convert_ConvertToStringFromEmptyArray_ReturnEmptyString()
+        {
+            //arrange
+            CustomList<int> test = new CustomList<int>();
+            string expected = "";
+            string actual;
+
+            //act
+            actual = test.ConvertToString();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //if i convert a list to a string, it should return a string full of the list
+        [TestMethod]
+        public void Convert_ConvertToString_ReturnString()
+        {
+            //arrange
+            CustomList<int> test = new CustomList<int>();
+            int intsToAdd = 7;
+            for(int i =0; i< intsToAdd; i++)
+            {
+                test.Add(i);
+            }
+
+            string expected = "1, 2, 3, 4, 5, 6, 7";
+            string actual;
+
+            //act
+            actual = test.Convert();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //if i convert a list full of strings to a string, it should return a string full of strings
+        [TestMethod]
+        public void Convert_ConvertToStringFromString_ReturnString()
+        {
+            //arrange
+            CustomList<string> test = new CustomList<string>();
+            int stringsToAdd = 4;
+            for (int i = 0; i < stringsToAdd; i++)
+            {
+                test.Add("hello");
+            }
+
+            string expected = "hello, hello, hello, hello";
+            string actual;
+
+            //act
+            actual = test.Convert();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //if i convert a list full of strings to a string, it should return a string full of strings
+        [TestMethod]
+        public void Convert_ConvertToStringFromDouble_ReturnString()
+        {
+            //arrange
+            CustomList<double> test = new CustomList<double>();
+            int doublesToAdd = 4;
+            for (int i = 0; i < doublesToAdd; i++)
+            {
+                test.Add(2);
+            }
+
+            string expected = "2, 2, 2, 2";
+            string actual;
+
+            //act
+            actual = test.Convert();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
 
     }
 }
