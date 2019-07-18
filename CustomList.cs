@@ -128,7 +128,7 @@ namespace CustomList
             
             for(int i = 0; i < Count; i++)
             {
-                newString.Append(items[i] + " "); 
+                newString.Append(items[i] + ", "); 
             }
             string finalString = newString.ToString();
 
