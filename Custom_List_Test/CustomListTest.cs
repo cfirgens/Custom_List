@@ -37,7 +37,7 @@ namespace Custom_List_Test
             // assert
             Assert.AreEqual(expected, actual);
         }
-        
+
         //if i add something to a customlist who has items in the array, it should add the item to the end
         [TestMethod]
         public void Add_AddToPopulatedArray_AddToEnd()
@@ -75,5 +75,35 @@ namespace Custom_List_Test
             // assert
             Assert.AreEqual(expected, actual);
         }
+
+        //if i add something to customlist whose inner array is full twice, it should still add the item
+        [TestMethod]
+        public void Add_AddToDoubleFullArray_StillAdd()
+        {
+            // arrange
+            CustomList<int> test = new CustomList<int>();
+            int expected = 12;
+            int actual;
+            // act
+            test.Add(4);
+            test.Add(4);
+            test.Add(4);
+            test.Add(4);
+            test.Add(8);
+            test.Add(8);
+            test.Add(8);
+            test.Add(8);
+            test.Add(12);
+            test.Add(12);
+            test.Add(12);
+            test.Add(12);
+            actual = test[8];
+            // assert
+            Assert.AreEqual(expected, actual);
+
+        }
+
+
+
     }
 }

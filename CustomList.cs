@@ -65,37 +65,26 @@ namespace CustomList
 
         public void Add(T value)
         {
-            int index;
-            if (count == capacity)
+            //int index;
+            if (count == (capacity -1))
             {
                 IncreaseCapacity();
             }
 
-            if (count == 0)
-            {
-                index = 0;
-            }
-            else
-            {
-                index = Count - 1;
-            }
-
-            items[index] = value;
+            items[count] = value;
             count++;
         }
 
 
         public void IncreaseCapacity()
         {
-            T[] newItems = new T[capacity];
             capacity += capacity;
+            T[] newItems = new T[capacity];            
             for(int i = 0; i < count; i++)
             {
                 newItems[i] = items[i];
             }
-
             items = newItems;
-
             
         }
     }
