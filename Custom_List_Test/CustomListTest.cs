@@ -193,7 +193,7 @@ namespace Custom_List_Test
             string actual;
 
             //act
-            actual = test.ConvertToString();
+            actual = test.Convert();
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -220,51 +220,6 @@ namespace Custom_List_Test
             //assert
             Assert.AreEqual(expected, actual);
         }
-
-        //if i convert a list full of strings to a string, it should return a string full of strings
-        [TestMethod]
-        public void Convert_ConvertToStringFromString_ReturnString()
-        {
-            //arrange
-            CustomList<string> test = new CustomList<string>();
-            int stringsToAdd = 4;
-            for (int i = 0; i < stringsToAdd; i++)
-            {
-                test.Add("hello");
-            }
-
-            string expected = "hello, hello, hello, hello";
-            string actual;
-
-            //act
-            actual = test.Convert();
-
-            //assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        //if i convert a list full of strings to a string, it should return a string full of strings
-        [TestMethod]
-        public void Convert_ConvertToStringFromDouble_ReturnString()
-        {
-            //arrange
-            CustomList<double> test = new CustomList<double>();
-            int doublesToAdd = 4;
-            for (int i = 0; i < doublesToAdd; i++)
-            {
-                test.Add(2);
-            }
-
-            string expected = "2, 2, 2, 2";
-            string actual;
-
-            //act
-            actual = test.Convert();
-
-            //assert
-            Assert.AreEqual(expected, actual);
-        }
-
 
     }
 }
