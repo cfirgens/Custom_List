@@ -118,34 +118,13 @@ namespace Custom_List_Test
             test.Add(2);
             test.Add(3);
             test.Add(4);
-            test.Remove[1];
+            test.Remove(2);
 
             actual = test[1];
             // assert
             Assert.AreEqual(expected, actual);
         }
 
-        //if i remove something to a customlist who has items in the array and the capacity can be lowered, it should lower capacity
-        [TestMethod]
-        public void Remove_RemoveFromPopulatedArrayToLowerCapacity_LowerCapacity()
-        {
-            // arrange
-            CustomList<int> test = new CustomList<int>();
-            int expected = 4;
-            int actual;
-
-            // act
-            test.Add(1);
-            test.Add(2);
-            test.Add(3);
-            test.Add(4);
-            test.Add(5);
-            test.Remove[0];
-
-            actual = test.Capacity;
-            // assert
-            Assert.AreEqual(expected, actual);
-        }
 
         //if i remove something to a customlist who has items in the array the count should lower
         [TestMethod]
@@ -160,7 +139,45 @@ namespace Custom_List_Test
             test.Add(1);
             test.Add(2);
             test.Add(3);
-            test.Remove[1];
+            test.Remove(2);
+
+            actual = test.Count;
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //if i remove something in a customlist that doesnt exist, it should return that item wasn't found
+        [TestMethod]
+        public void Remove_RemoveFromPopulatedArray_NothingChangesFromListCountRemainsTheSame()
+        {
+            // arrange
+            CustomList<int> test = new CustomList<int>();
+            int expected = 3;
+            int actual;
+
+            // act
+            test.Add(1);
+            test.Add(2);
+            test.Add(3);
+            test.Remove(4);
+
+            actual = test.Count;
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //if i remove something in a customlist that doesnt have anything in it, it should return that list is empty
+        [TestMethod]
+        public void Remove_RemoveFromEmptyArray_TheCountDoesntChange()
+        {
+            // arrange
+            CustomList<int> test = new CustomList<int>();
+            int expected = 0;
+            int actual;
+
+            // act
+
+            test.Remove(4);
 
             actual = test.Count;
             // assert

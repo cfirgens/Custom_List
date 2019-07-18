@@ -54,23 +54,19 @@ namespace CustomList
         }
 
         public CustomList()
-        {
-            
+        {            
             count = 0;
             capacity = 4;
             items = new T[capacity];
-
         }
 
 
         public void Add(T value)
         {
-            //int index;
             if (count == (capacity -1))
             {
                 IncreaseCapacity();
             }
-
             items[count] = value;
             count++;
         }
@@ -84,8 +80,46 @@ namespace CustomList
             {
                 newItems[i] = items[i];
             }
-            items = newItems;
+            items = newItems;            
+        }
+
+        public void Remove(T value)
+        {
+            int findNumber;
+            findNumber = FindNumber(value);
+            if(findNumber > 0)
+            {
+                T[] newItems = new T[capacity];
+                int j = 0;
+                for (int i = 0 ; i < count; i++, j++) {
+                    if (!value.Equals(items[i]))
+                    {
+                        newItems[j] = items[i];                        
+                    }
+                    else
+                    {
+                        j--;                       
+                    }
+                }
+                count--;
+                items = newItems;
+            }
             
         }
+
+
+        public int FindNumber(T value)
+        {
+            for(int i = 0; i < count; i++)
+            {
+                if (value.Equals(items[i]))
+                {
+                    return i;
+                }
+            }
+            return -1;
+            
+        }
+
     }
 }

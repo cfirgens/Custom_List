@@ -10,6 +10,14 @@ namespace Custom_List
     {
         static void Main(string[] args)
         {
+            List<int> newList = new List<int>();
+
+            Console.WriteLine(newList);
+            newList.Remove(5);
+
+            Console.ReadLine();
+
+            newList.RemoveAt(1);
         }
     }
 }
