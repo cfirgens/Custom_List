@@ -211,7 +211,7 @@ namespace Custom_List_Test
                 test.Add(i);
             }
 
-            string expected = "1, 2, 3, 4, 5, 6, 7";
+            string expected = "0 1 2 3 4 5 6 ";
             string actual;
 
             //act

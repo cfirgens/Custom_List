@@ -121,5 +121,19 @@ namespace CustomList
             
         }
 
+
+        public string Convert()
+        {
+            StringBuilder newString = new StringBuilder();
+            
+            for(int i = 0; i < Count; i++)
+            {
+                newString.Append(items[i] + " "); 
+            }
+            string finalString = newString.ToString();
+
+            return finalString;
+        }
+
     }
 }
