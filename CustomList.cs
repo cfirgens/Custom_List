@@ -140,7 +140,7 @@ namespace CustomList
         {
             CustomList<T> combinedList = new CustomList<T>();
 
-            for (int i = 0; i <listOne.Count; i++)
+            for (int i = 0; i < listOne.Count; i++)
             {
                 combinedList.Add(listOne[i]);
             }
@@ -150,6 +150,52 @@ namespace CustomList
             }
             return combinedList;
         }
+
+        public static CustomList<T> Zip(CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            var zippedList = new CustomList<T>();
+            if (listOne.Count == listTwo.Count)
+            {
+                for (int i = 0; i < listOne.Count; i++)
+                {
+                    zippedList.Add(listOne[i]);
+                    zippedList.Add(listTwo[i]);
+                }
+                return zippedList;
+            }
+            else if (listOne.Count > listTwo.Count)
+            {
+                for (int i = 0; i < listOne.Count; i++)
+                {
+                    for(int j = 0; i< listTwo.Count; j++, i++)
+                    {
+                        zippedList.Add(listOne[j]);
+                        zippedList.Add(listTwo[j]);
+                    }
+
+                    zippedList.Add(listOne[i]);
+
+                }
+                return zippedList;
+            }
+            else
+            {
+                for (int i = 0; i < listTwo.Count; i++)
+                {
+                    for (int j = 0; i < listOne.Count; j++, i++)
+                    {
+                        zippedList.Add(listOne[j]);
+                        zippedList.Add(listTwo[j]);
+                    }
+
+                    zippedList.Add(listTwo[i]);
+
+                }
+                return zippedList;
+            }
+        }
+
+
 
 
 

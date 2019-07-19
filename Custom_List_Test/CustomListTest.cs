@@ -295,14 +295,14 @@ namespace Custom_List_Test
         public void Zip_ZipTwoListsWithZeroCount_ReturnListWithZeroCount()
         {
             //arrange
-            CustomList<int> listOne = new CustomList<int>();
-            CustomList<int> listTwo = new CustomList<int>();
-            CustomList<int> zippedList = new CustomList<int>();
+            var listOne = new CustomList<int>();
+            var listTwo = new CustomList<int>();
+            var zippedList = new CustomList<int>();
             int expected = 0;
             int actual;
 
             //act
-            zippedList = Zip(listOne, listTwo);
+            zippedList= CustomList<int>.Zip(listOne, listTwo);
             actual = zippedList.Count;
 
             //assert
@@ -314,9 +314,9 @@ namespace Custom_List_Test
         public void Zip_ZipTwoListsWithTwoCount_ReturnListWithFourCount()
         {
             //arrange
-            CustomList<int> listOne = new CustomList<int>();
-            CustomList<int> listTwo = new CustomList<int>();
-            CustomList<int> zippedList = new CustomList<int>();
+            var listOne = new CustomList<int>();
+            var listTwo = new CustomList<int>();
+            var zippedList = new CustomList<int>();
             int expected = 4;
             int actual;
             int intsToAdd = 2;
@@ -328,7 +328,7 @@ namespace Custom_List_Test
                 listTwo.Add(i);
             }
 
-            zippedList = Zip(listOne, listTwo);
+            zippedList = CustomList<int>.Zip(listOne, listTwo);
             actual = zippedList.Count;
 
             //assert
@@ -340,9 +340,9 @@ namespace Custom_List_Test
         public void Zip_ZipTwoList_ReturnListThatZipsTwoListsTogether()
         {
             //arrange
-            CustomList<int> listOne = new CustomList<int>();
-            CustomList<int> listTwo = new CustomList<int>();
-            CustomList<int> zippedList = new CustomList<int>();
+            var listOne = new CustomList<int>();
+            var listTwo = new CustomList<int>();
+            var zippedList = new CustomList<int>();
             int expected = 1;
             int actual;
             int intsToAdd = 2;
@@ -354,7 +354,7 @@ namespace Custom_List_Test
                 listTwo.Add(i);
             }
 
-            zippedList = Zip(listOne, listTwo);
+            zippedList = CustomList<int>.Zip(listOne, listTwo);
             actual = zippedList[3];
 
             //assert
@@ -366,9 +366,9 @@ namespace Custom_List_Test
         public void Zip_ZipTwoDifferentLengthList_ReturnListThatZipsTwoListsTogether()
         {
             //arrange
-            CustomList<int> listOne = new CustomList<int>();
-            CustomList<int> listTwo = new CustomList<int>();
-            CustomList<int> zippedList = new CustomList<int>();
+            var listOne = new CustomList<int>();
+            var listTwo = new CustomList<int>();
+            var zippedList = new CustomList<int>();
             int expected = 8;
             int actual;
             
@@ -378,12 +378,12 @@ namespace Custom_List_Test
             {                
                 listOne.Add(i);
             }
-            for (int j= 0; j <5; j++)
+            for (int j = 0; j < 5; j++)
             {
                 listTwo.Add(j);
             }
 
-            zippedList = Zip(listOne, listTwo);
+            zippedList = CustomList<int>.Zip(listOne, listTwo);
             actual = zippedList.Count;
 
             //assert
