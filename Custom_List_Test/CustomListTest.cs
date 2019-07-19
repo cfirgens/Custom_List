@@ -214,7 +214,7 @@ namespace Custom_List_Test
             {
                 test.Add(i);
             }
-            
+
             actual = test.Convert();
 
             //assert
@@ -234,7 +234,7 @@ namespace Custom_List_Test
             int actual;
 
             //act
-            for (int i = 0; i< intsToAdd; i++)
+            for (int i = 0; i < intsToAdd; i++)
             {
                 listOne.Add(i);
                 listTwo.Add(i);
@@ -245,7 +245,7 @@ namespace Custom_List_Test
             actual = combinedList.Count;
 
             //assert
-            Assert.AreEqual(expected, actual);  
+            Assert.AreEqual(expected, actual);
         }
 
 
@@ -256,7 +256,7 @@ namespace Custom_List_Test
             //arrange
             CustomList<int> listOne = new CustomList<int>();
             CustomList<int> listTwo = new CustomList<int>();
-            CustomList<int> combinedList = new CustomList<int>();            
+            CustomList<int> combinedList = new CustomList<int>();
             int expected = 0;
             int actual;
 
@@ -290,5 +290,104 @@ namespace Custom_List_Test
             Assert.AreEqual(expected, actual);
         }
 
+        //if i zip two lists together with 0 count, it should remain 0 count
+        [TestMethod]
+        public void Zip_ZipTwoListsWithZeroCount_ReturnListWithZeroCount()
+        {
+            //arrange
+            CustomList<int> listOne = new CustomList<int>();
+            CustomList<int> listTwo = new CustomList<int>();
+            CustomList<int> zippedList = new CustomList<int>();
+            int expected = 0;
+            int actual;
+
+            //act
+            zippedList = Zip(listOne, listTwo);
+            actual = zippedList.Count;
+
+            //assert
+            Assert.AreEqual(expected, actual);            
+        }
+
+        //if i zip two lists together each with two count, it should have 4 count
+        [TestMethod]
+        public void Zip_ZipTwoListsWithTwoCount_ReturnListWithFourCount()
+        {
+            //arrange
+            CustomList<int> listOne = new CustomList<int>();
+            CustomList<int> listTwo = new CustomList<int>();
+            CustomList<int> zippedList = new CustomList<int>();
+            int expected = 4;
+            int actual;
+            int intsToAdd = 2;
+
+            //act
+            for (int i = 0; i < intsToAdd; i++)
+            {
+                listOne.Add(i);
+                listTwo.Add(i);
+            }
+
+            zippedList = Zip(listOne, listTwo);
+            actual = zippedList.Count;
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //if i zip two lists together, the values should zip ie list one 123; list two 456; zipped list 142536;
+        [TestMethod]
+        public void Zip_ZipTwoList_ReturnListThatZipsTwoListsTogether()
+        {
+            //arrange
+            CustomList<int> listOne = new CustomList<int>();
+            CustomList<int> listTwo = new CustomList<int>();
+            CustomList<int> zippedList = new CustomList<int>();
+            int expected = 1;
+            int actual;
+            int intsToAdd = 2;
+
+            //act
+            for (int i = 0; i < intsToAdd; i++)
+            {
+                listOne.Add(i);
+                listTwo.Add(i);
+            }
+
+            zippedList = Zip(listOne, listTwo);
+            actual = zippedList[3];
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //if i zip two lists together that are different lengths, the shorter should zip and the longers values will fill in
+        [TestMethod]
+        public void Zip_ZipTwoDifferentLengthList_ReturnListThatZipsTwoListsTogether()
+        {
+            //arrange
+            CustomList<int> listOne = new CustomList<int>();
+            CustomList<int> listTwo = new CustomList<int>();
+            CustomList<int> zippedList = new CustomList<int>();
+            int expected = 8;
+            int actual;
+            
+
+            //act
+            for (int i = 0; i < 3; i++)
+            {                
+                listOne.Add(i);
+            }
+            for (int j= 0; j <5; j++)
+            {
+                listTwo.Add(j);
+            }
+
+            zippedList = Zip(listOne, listTwo);
+            actual = zippedList.Count;
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
