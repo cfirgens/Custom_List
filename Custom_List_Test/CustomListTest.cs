@@ -302,11 +302,11 @@ namespace Custom_List_Test
             int actual;
 
             //act
-            zippedList= CustomList<int>.Zip(listOne, listTwo);
+            zippedList = CustomList<int>.Zip(listOne, listTwo);
             actual = zippedList.Count;
 
             //assert
-            Assert.AreEqual(expected, actual);            
+            Assert.AreEqual(expected, actual);
         }
 
         //if i zip two lists together each with two count, it should have 4 count
@@ -371,11 +371,11 @@ namespace Custom_List_Test
             var zippedList = new CustomList<int>();
             int expected = 8;
             int actual;
-            
+
 
             //act
             for (int i = 0; i < 3; i++)
-            {                
+            {
                 listOne.Add(i);
             }
             for (int j = 0; j < 5; j++)
@@ -386,6 +386,102 @@ namespace Custom_List_Test
             zippedList = CustomList<int>.Zip(listOne, listTwo);
             actual = zippedList.Count;
 
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //if i subtract two lists from each other and nothing is subtracted the count should remain the same
+        [TestMethod]
+        public void OverrideSubtract_SubtractTwoListsThatChangeNothing_ReturnSameCountForFirstList()
+        {
+            //arrange
+            var listOne = new CustomList<int>();
+            var listTwo = new CustomList<int>();
+            var subtractedList = new CustomList<int>();
+
+            int expected = 4;
+            int actual;
+
+            //act
+            for (int i = 0; i <4; i++)
+            {
+                listOne.Add(i);
+                listTwo.Add(i+5);
+            }
+
+            subtractedList = listOne - listTwo;
+            actual = subtractedList.Count;
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //if i subtract two lists from each other and one thing is subtracted the count should drop by one
+        [TestMethod]
+        public void OverrideSubtract_SubtractTwoListsThatSubtractOneValue_ReturnCountMinusOne()
+        {
+            //arrange
+            var listOne = new CustomList<int>();
+            var listTwo = new CustomList<int>();
+            var subtractedList = new CustomList<int>();
+
+            int expected = listOne.Count - 1;
+            int actual;
+
+            //act
+            for (int i = 0; i < 4; i++)
+            {
+                listOne.Add(i);
+                listTwo.Add(i+3);
+            }
+
+            subtractedList = listOne - listTwo;
+            actual = subtractedList.Count;
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //if i subtract two lists from each other and more than one thing is subtracted the count should drop by that number
+        [TestMethod]
+        public void OverrideSubtract_SubtractTwoListsThatSubtractMoreThanOneValue_ReturnCountMinusThatValue()
+        {
+            //arrange
+            var listOne = new CustomList<int>();
+            var listTwo = new CustomList<int>();
+            var subtractedList = new CustomList<int>();
+            int expected = listOne.Count - 2;
+            int actual;
+
+            //act 
+            for (int i = 0; i < 4; i++)
+            {
+                listOne.Add(i);
+                listTwo.Add(i + 2);
+            }
+            subtractedList = listOne - listTwo;
+            actual = subtractedList.Count;
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //if i subtract two lists from each other and all of list one is subtracted the count should be zero
+        [TestMethod]
+        public void OverrideSubtract_SubtractTwoListsAllListOneIsSubtracted_ReturnCountZero()
+        {
+            //arrange
+            var listOne = new CustomList<int>();
+            var listTwo = new CustomList<int>();
+            var subtractedList = new CustomList<int>();
+            int expected = 0;
+            int actual;
+
+            //act 
+            for (int i = 0; i < 4; i++)
+            {
+                listOne.Add(i);
+                listTwo.Add(i);
+            }
+            subtractedList = listOne - listTwo;
+            actual = subtractedList.Count;
             //assert
             Assert.AreEqual(expected, actual);
         }
