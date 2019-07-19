@@ -128,7 +128,7 @@ namespace CustomList
             
             for(int i = 0; i < Count; i++)
             {
-                newString.Append(items[i] + ", "); 
+                newString.Append(items[i] + " "); 
             }
             string finalString = newString.ToString();
 
@@ -139,14 +139,14 @@ namespace CustomList
         public static CustomList<T> operator +(CustomList<T> listOne, CustomList<T> listTwo)
         {
             CustomList<T> combinedList = new CustomList<T>();
-            int combinedCount = listOne.Count + listTwo.Count;
-            for (int i = 0; i <combinedCount; i++)
+
+            for (int i = 0; i <listOne.Count; i++)
             {
                 combinedList.Add(listOne[i]);
-                for(int j =0; j<combinedCount; j++)
-                {
-                    combinedList.Add(listTwo[j]);
-                }
+            }
+            for (int j = 0; j < listTwo.Count; j++)
+            {
+                combinedList.Add(listTwo[j]);
             }
             return combinedList;
         }

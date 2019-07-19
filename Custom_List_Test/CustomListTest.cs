@@ -230,7 +230,7 @@ namespace Custom_List_Test
             CustomList<int> listTwo = new CustomList<int>();
             CustomList<int> combinedList = new CustomList<int>();
             int intsToAdd = 5;
-            int expected = (listOne.Count + listTwo.Count);
+            int expected = 10;
             int actual;
 
             //act
