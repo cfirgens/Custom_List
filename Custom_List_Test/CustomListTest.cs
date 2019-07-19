@@ -229,7 +229,7 @@ namespace Custom_List_Test
             CustomList<int> listOne = new CustomList<int>();
             CustomList<int> listTwo = new CustomList<int>();
             CustomList<int> combinedList = new CustomList<int>();
-            int intsToAdd = 7;
+            int intsToAdd = 5;
             int expected = (listOne.Count + listTwo.Count);
             int actual;
 
@@ -248,29 +248,6 @@ namespace Custom_List_Test
             Assert.AreEqual(expected, actual);  
         }
 
-        //if i add two lists of different together, it should return in order of list 1 then list 2 in final list
-        [TestMethod]
-        public void OverloadAdd_AddTwoListsDifferentClass_ReturnListWithCountOfBothListsAdded()
-        {
-            //arrange
-            CustomList<int> listOne = new CustomList<int>();
-            CustomList<double> listTwo = new CustomList<double>();
-            CustomList<int> combinedList = new CustomList<int>();
-            int intsToAdd = 7;
-            int expected = 0; 
-            int actual;
-
-            //act
-            for (int i = 0; i < intsToAdd; i++)
-            {
-                listOne.Add(i);
-                listTwo.Add(i);
-            }
-            actual = combinedList[8];
-
-            //assert
-            Assert.AreEqual(expected, actual);
-        }
 
         //if i add two lists with 0 count together, it should return a 0 count list
         [TestMethod]
@@ -278,12 +255,13 @@ namespace Custom_List_Test
         {
             //arrange
             CustomList<int> listOne = new CustomList<int>();
-            CustomList<double> listTwo = new CustomList<double>();
+            CustomList<int> listTwo = new CustomList<int>();
             CustomList<int> combinedList = new CustomList<int>();            
             int expected = 0;
             int actual;
 
             //act
+            combinedList = listOne + listTwo;
             actual = combinedList.Count;
             //assert
             Assert.AreEqual(expected, actual);
@@ -294,7 +272,7 @@ namespace Custom_List_Test
         {
             //arrange
             CustomList<int> listOne = new CustomList<int>();
-            CustomList<double> listTwo = new CustomList<double>();
+            CustomList<int> listTwo = new CustomList<int>();
             CustomList<int> combinedList = new CustomList<int>();
             int expected = 4;
             int actual;
@@ -305,7 +283,9 @@ namespace Custom_List_Test
             {
                 listOne.Add(i);
             }
+            combinedList = listOne + listTwo;
             actual = combinedList.Count;
+
             //assert
             Assert.AreEqual(expected, actual);
         }

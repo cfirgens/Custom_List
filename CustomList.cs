@@ -135,5 +135,23 @@ namespace CustomList
             return finalString;
         }
 
+
+        public static CustomList<T> operator +(CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            CustomList<T> combinedList = new CustomList<T>();
+            int combinedCount = listOne.Count + listTwo.Count;
+            for (int i = 0; i <combinedCount; i++)
+            {
+                combinedList.Add(listOne[i]);
+                for(int j =0; j<combinedCount; j++)
+                {
+                    combinedList.Add(listTwo[j]);
+                }
+            }
+            return combinedList;
+        }
+
+
+
     }
 }
