@@ -13,6 +13,7 @@ namespace CustomList
         int count;
         int capacity;
         T[] listItems;
+
         //properties
         public int Count
         {
@@ -74,6 +75,37 @@ namespace CustomList
             count++;
         }
 
+        public void Remove(T value)
+        {
+            int findNumber;
+            findNumber = Find(value);
+            if (findNumber > 0)
+            {
+                T[] newItems = new T[capacity];
+                int j = 0;
+                for (int i = 0; i < count; i++, j++)
+                {
+                    if (!value.Equals(listItems[i]))
+                    {
+                        newItems[j] = listItems[i];
+                    }
+                    else
+                    {
+                        j--;
+                    }
+                }
+                count--;
+                listItems = newItems;
+            }
+        }
+        public void RemoveAt(int indexRemove)
+        {
+            for (int i = indexRemove + 1; i < Count; i++)
+            {
+                listItems[i - 1] = listItems[i];
+            }
+            count--;
+        }
 
         public void IncreaseCapacity()
         {
@@ -85,42 +117,6 @@ namespace CustomList
             }
             listItems = newItems;            
         }
-
-        public void Remove(T value)
-        {
-            int findNumber;
-            findNumber = Find(value);
-            if(findNumber > 0)
-            {
-                T[] newItems = new T[capacity];
-                int j = 0;
-                for (int i = 0 ; i < count; i++, j++) {
-                    if (!value.Equals(listItems[i]))
-                    {
-                        newItems[j] = listItems[i];                        
-                    }
-                    else
-                    {
-                        j--;                       
-                    }
-                }
-                count--;
-                listItems = newItems;
-            }
-            
-        }
-
-        public void RemoveAt(int indexRemove)
-        {
-            for (int i = indexRemove +1; i < Count; i++)
-            
-            {
-                listItems[i - 1] = listItems[i];
-            }
-            count--;
-        }
-
-
         public int Find(T value)
         {
             for(int i = 0; i < count; i++)
@@ -132,9 +128,6 @@ namespace CustomList
             }
             return -1;            
         }
-
-
-
         public string Convert()
         {
             StringBuilder newString = new StringBuilder();
@@ -147,8 +140,6 @@ namespace CustomList
 
             return finalString;
         }
-
-
         public static CustomList<T> operator +(CustomList<T> listOne, CustomList<T> listTwo)
         {
             CustomList<T> combinedList = new CustomList<T>();
@@ -162,6 +153,20 @@ namespace CustomList
                 combinedList.Add(listTwo[j]);
             }
             return combinedList;
+        }
+        public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            for (int i = 0; i < listOne.Count; i++)
+            {
+                for (int j = 0; j < listTwo.Count; j++)
+                {
+                    if (listOne[i].Equals(listTwo[j]))
+                    {
+                        listOne.Remove(listTwo[j]);
+                    }
+                }
+            }
+            return listOne;
         }
 
         public static CustomList<T> Zip(CustomList<T> listOne, CustomList<T> listTwo)
@@ -207,22 +212,6 @@ namespace CustomList
                 return zippedList;
             }
         }
-
-        public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
-        {
-            for (int i = 0; i < listOne.Count; i++)
-            {
-                for (int j = 0; j < listTwo.Count; j++)
-                {
-                    if (listOne[i].Equals(listTwo[j]))
-                    {
-                        listOne.Remove(listTwo[j]);
-                    }
-                }
-            }
-            return listOne;
-        }
-
         public IEnumerator<T> GetEnumerator()
         {
             for (int i = 0; i < Count; i++)
@@ -230,7 +219,6 @@ namespace CustomList
                 yield return listItems[i];
             }
         }
-
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
