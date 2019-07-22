@@ -1,4 +1,3 @@
-# Custom_List
 <h1>Custom List Class</h1>
 <h3><em>A C# project with the goal of re-writing the built-in List Class.</em></h3>
 <p>The CustomList class is enumerable and has a Count property.</p>

@@ -62,6 +62,7 @@ namespace CustomList
             listItems = new T[capacity];
         }
 
+        // methods
 
         public void Add(T value)
         {
