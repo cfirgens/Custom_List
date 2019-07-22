@@ -27,7 +27,6 @@ namespace CustomList
             }
         }
 
-        private T[] items;
 
         public T this[int index]
         {
@@ -35,7 +34,7 @@ namespace CustomList
             {
                 if (index >= 0 && index < count)
                 {
-                    return items[index];
+                    return listItems[index];
                 }
 
                 throw new IndexOutOfRangeException();
@@ -45,7 +44,7 @@ namespace CustomList
             {
                 if (index >= 0 && index < count)
                 {
-                    items[index] = value;
+                    listItems[index] = value;
                 }
                 else
                 {
@@ -87,7 +86,7 @@ namespace CustomList
         public void Remove(T value)
         {
             int findNumber;
-            findNumber = FindNumber(value);
+            findNumber = Find(value);
             if(findNumber > 0)
             {
                 T[] newItems = new T[capacity];
@@ -108,8 +107,18 @@ namespace CustomList
             
         }
 
+        public void RemoveAt(int indexRemove)
+        {
+            for (int i = indexRemove +1; i < Count; i++)
+            
+            {
+                listItems[i - 1] = listItems[i];
+            }
+            count--;
+        }
 
-        public int FindNumber(T value)
+
+        public int Find(T value)
         {
             for(int i = 0; i < count; i++)
             {
@@ -118,9 +127,9 @@ namespace CustomList
                     return i;
                 }
             }
-            return -1;
-            
+            return -1;            
         }
+
 
 
         public string Convert()
@@ -196,32 +205,32 @@ namespace CustomList
             }
         }
 
-        public static CustomList<T>  operator - (CustomList<T> listOne, CustomList<T> listTwo)
-        {
-            CustomList<T> minusList = new CustomList<T>();
-            int matchFound = listOne.FindNumber(listTwo);
+        //public static CustomList<T>  operator - (CustomList<T> listOne, CustomList<T> listTwo)
+        //{
+        //    CustomList<T> minusList = new CustomList<T>();
+        //    int matchFound = listOne.FindNumber(listTwo);
 
-            if(matchFound != -1)
-            {
-                int lastMatchCount = matchFound + listTwo.Count - 1;
-                for (int i = 0; i < listOne.Count; i++)
-                {
-                    if ( i < matchFound || i > lastMatchCount)
-                    {
-                        minusList.Add(listOne[i]);
-                    }
-                }
-            }
-            else
-            {
-                for(int i = 0; i < listOne.Count; i++)
-                {
-                    minusList.Add(listOne[i]);
-                }
-            }
-            return minusList;
+        //    if(matchFound != -1)
+        //    {
+        //        int lastMatchCount = matchFound + listTwo.Count - 1;
+        //        for (int i = 0; i < listOne.Count; i++)
+        //        {
+        //            if ( i < matchFound || i > lastMatchCount)
+        //            {
+        //                minusList.Add(listOne[i]);
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        for(int i = 0; i < listOne.Count; i++)
+        //        {
+        //            minusList.Add(listOne[i]);
+        //        }
+        //    }
+        //    return minusList;
 
-        }
+        //}
 
 
 
