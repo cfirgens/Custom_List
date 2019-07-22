@@ -403,10 +403,10 @@ namespace Custom_List_Test
             int actual;
 
             //act
-            for (int i = 0; i <4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 listOne.Add(i);
-                listTwo.Add(i+5);
+                listTwo.Add(i + 5);
             }
 
             subtractedList = listOne - listTwo;
@@ -431,7 +431,7 @@ namespace Custom_List_Test
             for (int i = 0; i < 4; i++)
             {
                 listOne.Add(i);
-                listTwo.Add(i+3);
+                listTwo.Add(i + 3);
             }
 
             subtractedList = listOne - listTwo;

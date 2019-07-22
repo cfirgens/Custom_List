@@ -10,6 +10,7 @@ namespace CustomList
     {
         int count;
         int capacity;
+        T[] listItems;
         
         public int Count
         {
@@ -57,7 +58,7 @@ namespace CustomList
         {            
             count = 0;
             capacity = 4;
-            items = new T[capacity];
+            listItems = new T[capacity];
         }
 
 
@@ -67,7 +68,7 @@ namespace CustomList
             {
                 IncreaseCapacity();
             }
-            items[count] = value;
+            listItems[count] = value;
             count++;
         }
 
@@ -78,9 +79,9 @@ namespace CustomList
             T[] newItems = new T[capacity];            
             for(int i = 0; i < count; i++)
             {
-                newItems[i] = items[i];
+                newItems[i] = listItems[i];
             }
-            items = newItems;            
+            listItems = newItems;            
         }
 
         public void Remove(T value)
@@ -92,9 +93,9 @@ namespace CustomList
                 T[] newItems = new T[capacity];
                 int j = 0;
                 for (int i = 0 ; i < count; i++, j++) {
-                    if (!value.Equals(items[i]))
+                    if (!value.Equals(listItems[i]))
                     {
-                        newItems[j] = items[i];                        
+                        newItems[j] = listItems[i];                        
                     }
                     else
                     {
@@ -102,7 +103,7 @@ namespace CustomList
                     }
                 }
                 count--;
-                items = newItems;
+                listItems = newItems;
             }
             
         }
@@ -112,7 +113,7 @@ namespace CustomList
         {
             for(int i = 0; i < count; i++)
             {
-                if (value.Equals(items[i]))
+                if (value.Equals(listItems[i]))
                 {
                     return i;
                 }
@@ -128,7 +129,7 @@ namespace CustomList
             
             for(int i = 0; i < Count; i++)
             {
-                newString.Append(items[i] + " "); 
+                newString.Append(listItems[i] + " "); 
             }
             string finalString = newString.ToString();
 
@@ -195,8 +196,32 @@ namespace CustomList
             }
         }
 
+        public static CustomList<T>  operator - (CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            CustomList<T> minusList = new CustomList<T>();
+            int matchFound = listOne.FindNumber(listTwo);
 
+            if(matchFound != -1)
+            {
+                int lastMatchCount = matchFound + listTwo.Count - 1;
+                for (int i = 0; i < listOne.Count; i++)
+                {
+                    if ( i < matchFound || i > lastMatchCount)
+                    {
+                        minusList.Add(listOne[i]);
+                    }
+                }
+            }
+            else
+            {
+                for(int i = 0; i < listOne.Count; i++)
+                {
+                    minusList.Add(listOne[i]);
+                }
+            }
+            return minusList;
 
+        }
 
 
 
