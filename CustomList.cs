@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable<T>
     {
+        //member variables
         int count;
         int capacity;
         T[] listItems;
-        
+        //properties
         public int Count
         {
             get
@@ -27,7 +29,7 @@ namespace CustomList
             }
         }
 
-
+        //index
         public T this[int index]
         {
             get
@@ -52,7 +54,7 @@ namespace CustomList
                 }
             }
         }
-
+        // constructor
         public CustomList()
         {            
             count = 0;
@@ -205,35 +207,33 @@ namespace CustomList
             }
         }
 
-        //public static CustomList<T>  operator - (CustomList<T> listOne, CustomList<T> listTwo)
-        //{
-        //    CustomList<T> minusList = new CustomList<T>();
-        //    int matchFound = listOne.FindNumber(listTwo);
+        public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            for (int i = 0; i < listOne.Count; i++)
+            {
+                for (int j = 0; j < listTwo.Count; j++)
+                {
+                    if (listOne[i].Equals(listTwo[j]))
+                    {
+                        listOne.Remove(listTwo[j]);
+                    }
+                }
+            }
+            return listOne;
+        }
 
-        //    if(matchFound != -1)
-        //    {
-        //        int lastMatchCount = matchFound + listTwo.Count - 1;
-        //        for (int i = 0; i < listOne.Count; i++)
-        //        {
-        //            if ( i < matchFound || i > lastMatchCount)
-        //            {
-        //                minusList.Add(listOne[i]);
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        for(int i = 0; i < listOne.Count; i++)
-        //        {
-        //            minusList.Add(listOne[i]);
-        //        }
-        //    }
-        //    return minusList;
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                yield return listItems[i];
+            }
+        }
 
-        //}
-
-
-
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
 
     }
 }
