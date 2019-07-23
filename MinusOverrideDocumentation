@@ -1,0 +1,35 @@
+Override Minus Operator method
+
+Summary
+Subtracts all of the contents of one list from another.
+
+Parameters
+C#
+public static CustomList<T> operator - (CustomList<T> listOne, CustomList<T> listTwo)
+
+Returns
+The first list<T> minus any values that the second list<T> has.
+
+Examples
+The following example demonstrates how to use the override and the expected results.
+
+            var listOne = new CustomList<int>();
+            var listTwo = new CustomList<int>();
+            var subtractedList = new CustomList<int>();          
+            listOne.Add(1);
+            listOne.Add(2);
+            listOne.Add(3);
+            listOne.Add(4);
+
+            listTwo.Add(4);
+	    listTwo.Add(3);
+
+	    subtractedList = (listOne - listTwo);
+
+	    foreach(int i = 0; i < subtractedList.Count; i++)
+		{
+		Console.Write(subtractedList[i]);
+		}
+		// console:
+		// 1
+		// 2
